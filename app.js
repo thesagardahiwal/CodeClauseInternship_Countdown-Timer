@@ -1,8 +1,10 @@
 const dateEl = document.getElementById("date");
 const timeEl = document.getElementById("time");
 const start = document.getElementsByTagName("button")[0];
-
 let month, date, time = "00:00:00", year;
+let n = 1;
+let isEventStoped = false;
+
 dateEl.onchange = (e) => { 
     let Date = String(dateEl.valueAsDate).split(' ');
     month = Date[1];
@@ -18,7 +20,7 @@ start.onclick = () => {
         eventStoped();
         return;
     }
-    if (month && date && time && year) {
+    if (month && date && time && year && !isEventStoped) {
         let countdownDate = new Date(`${month} ${date}, ${year} ${time}`).getTime();
         timeStarted()
         const x = setInterval(() => {
@@ -34,8 +36,7 @@ start.onclick = () => {
             document.getElementById("hours").innerText = hours;
             document.getElementById("minutes").innerText = minutes;
             document.getElementById("seconds").innerText = seconds;
-        
-            if (distance < 0) {
+            if (distance < 0 || isEventStoped) {
                 timerEnded(x);
             }
         }, 1000);
@@ -44,6 +45,7 @@ start.onclick = () => {
 
 
 function timeStarted () {
+    isEventStoped = false;
     document.getElementById("message").innerHTML = "";
     document.getElementById("countdown").style = "display: flex";
     start.style = "background-color: red; color: white";
@@ -52,13 +54,15 @@ function timeStarted () {
 
 function timerEnded(x) {
     clearInterval(x);
-    document.getElementById("message").innerHTML = "Event has started!";
+    document.getElementById("message").innerHTML = `Event has ${!isEventStoped ? "started" : "stoped"}!`;
     document.getElementById("countdown").style = "display: none";
     start.style = "background-color: greenyellow;";
     start.innerHTML = "Start";
+    isEventStoped = false;
 }
 
 function eventStoped() {
+    isEventStoped = true;
     document.getElementById("message").innerHTML = "Event has stoped!";
     document.getElementById("countdown").style = "display: none";
     start.style = "background-color: greenyellow;";
