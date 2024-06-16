@@ -26,7 +26,7 @@ https://github.com/thesagardahiwal/CodeClauseInternship_Countdown-Timer/assets/1
 
 
 
-You can also check out a live demo [here](https://example.com).
+You can also check out a live demo [here](https://thesagardahiwal.github.io/CodeClauseInternship_Countdown-Timer/).
 
 ## Installation
 
