@@ -2,7 +2,6 @@ const dateEl = document.getElementById("date");
 const timeEl = document.getElementById("time");
 const start = document.getElementsByTagName("button")[0];
 let month, date, time = "00:00:00", year;
-let n = 1;
 let isEventStoped = false;
 
 dateEl.onchange = (e) => { 
